@@ -1,0 +1,43 @@
+@extends('layouts.dashboard.app') 
+@section('content')
+
+<div class="content-wrapper">
+
+    <section class="content-header">
+
+        <h1>@lang('site.update')</h1>
+
+        <ol class="breadcrumb">
+            <li><a href="{{ route('dashboard.index') }}"> @lang('site.dashboard')</a></li>
+            <li class="active"> @lang('site.update')</li>
+        </ol>
+    </section>
+
+    <section class="content">
+    @include('partials._errors')
+    
+        <form action="{{ route('dashboard.admins.update', $admin->id) }}" method="post">
+
+            @csrf 
+            @method('put')
+
+            <div class="form-group">
+                <label>@lang('site.name')</label>
+                <input class="form-control" type="text" name="name" value="{{ $admin->name }}">
+            </div>
+            <div class="form-group">
+                <label>@lang('site.email')</label>
+                <input class="form-control" type="email" name="email" value="{{ $admin->email }}">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">@lang('site.save')</button>
+            </div>
+
+        </form>
+
+    </section>
+    <!-- end of content -->
+
+</div>
+<!-- end of content wrapper -->
+@endsection
