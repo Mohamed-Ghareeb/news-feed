@@ -9,7 +9,7 @@
 
         <ol class="breadcrumb">
             <li><a href="{{ route('dashboard.index') }}"> @lang('site.dashboard')</a></li>
-            <li><a href="{{ route('dashboard.countries.index') }}"> @lang('site.countries')</a></li>
+            <li><a href="{{ route('dashboard.cities.index') }}"> @lang('site.cities')</a></li>
             <li class="active"> @lang('site.create')</li>
         </ol>
     </section>
@@ -18,7 +18,7 @@
 
      @include('partials._errors')   
 
-    <form action="{{ route('dashboard.countries.store') }}" method="post">
+    <form action="{{ route('dashboard.cities.store') }}" method="post">
     
         @csrf 
 
@@ -30,8 +30,18 @@
                 <label>@lang('site.' . $locale . '.name')</label>
                 <input class="form-control" type="text" name="{{ $locale }}[name]" value="{{ old($locale . '.name') }}">
             </div>
-
-        @endforeach
+            
+            @endforeach
+            <div class="form-group">
+                <label>@lang('site.country')</label>
+                
+                <select class="form-control" name="country_id">
+                    <option>.....</option>
+                @foreach ($countries as $country)    
+                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                @endforeach
+                </select>
+            </div>
         <div class="form-group">
             <button class="btn btn-primary" type="submit">@lang('site.add')</button>
         </div>

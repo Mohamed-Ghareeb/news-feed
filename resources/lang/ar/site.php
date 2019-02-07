@@ -38,6 +38,10 @@ return [
     'email' => 'البريد الاكتروني',
     'image' => 'صوره',
     'action' => 'اكشن',
+    'country' => 'البلد',
+    'city' => 'المدنية',
+    'countries' => 'البلاد',
+    'cities' => 'المدن',
 
     'permissions' => 'الصلاحيات',
 

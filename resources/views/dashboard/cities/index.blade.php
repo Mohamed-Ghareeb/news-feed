@@ -8,8 +8,8 @@
         <h1>@lang('site.dashboard')</h1>
 
         <ol class="breadcrumb">
-            <li><a href="{{ route('dashboard.index') }}"></a> @lang('site.dashboard')</li>
-            <li class="active"> @lang('site.countries')</li>
+            <li> @lang('site.dashboard')</li>
+            <li class="active"> @lang('site.cities')</li>
         </ol>
     </section>
 
@@ -19,9 +19,9 @@
                     
                         <div class="box-header with-border">
                     
-                            <h3 class="box-title" style="margin-bottom: 15px">@lang('site.admins')</h3>
+                            <h3 class="box-title" style="margin-bottom: 15px">@lang('site.cities')</h3>
                     
-                            <form action="{{ route('dashboard.countries.index') }}" method="get">
+                            <form action="{{ route('dashboard.cities.index') }}" method="get">
                     
                                 <div class="row">
                     
@@ -31,7 +31,7 @@
                     
                                     <div class="col-md-4">
                                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> @lang('site.search')</button>
-                                        <a href="{{ route('dashboard.countries.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.create')</a>
+                                        <a href="{{ route('dashboard.cities.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.create')</a>
                                     </div>
                     
                                 </div>
@@ -43,7 +43,7 @@
                     
                         <div class="box-body">
                     
-                            @if ($countries->count() > 0)
+                            @if ($cities->count() > 0)
                     
                             <table class="table table-hover">
                     
@@ -51,18 +51,20 @@
                                     <tr>
                                         <th>#</th>
                                         <th>@lang('site.name')</th>
+                                        <th>@lang('site.country')</th>
                                         <th>@lang('site.action')</th>
                                     </tr>
                                 </thead>
                     
                                 <tbody>
-                                    @foreach ($countries as $index=>$country)
+                                    @foreach ($cities as $index=>$city) 
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $country->name }}</td>
+                                        <td>{{ $city->name }}</td>
+                                        <td>{{ $city->country->name }}</td>
                                         <td>
-                                            <a href="{{ route('dashboard.countries.edit', $country->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
-                                            <form action="{{ route('dashboard.countries.destroy', $country->id) }}" method="post" style="display: inline-block">
+                                            <a href="{{ route('dashboard.cities.edit', $city->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
+                                            <form action="{{ route('dashboard.cities.destroy', $city->id) }}" method="post" style="display: inline-block">
                                                 {{ csrf_field() }} {{ method_field('delete') }}
                                                 <button type="submit" class="btn btn-danger delete btn-sm"><i class="fa fa-trash"></i> @lang('site.delete')</button>
                                             </form>
