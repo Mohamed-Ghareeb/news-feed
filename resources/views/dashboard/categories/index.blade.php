@@ -9,7 +9,7 @@
 
         <ol class="breadcrumb">
             <li><a href="{{ route('dashboard.index') }}"></a> @lang('site.dashboard')</li>
-            <li class="active"> @lang('site.countries')</li>
+            <li class="active"> @lang('site.categories')</li>
         </ol>
     </section>
 
@@ -19,9 +19,9 @@
                     
                         <div class="box-header with-border">
                     
-                            <h3 class="box-title" style="margin-bottom: 15px">@lang('site.countries')</h3>
+                            <h3 class="box-title" style="margin-bottom: 15px">@lang('site.categories')</h3>
                     
-                            <form action="{{ route('dashboard.countries.index') }}" method="get">
+                            <form action="{{ route('dashboard.categories.index') }}" method="get">
                     
                                 <div class="row">
                     
@@ -31,7 +31,7 @@
                     
                                     <div class="col-md-4">
                                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> @lang('site.search')</button>
-                                        <a href="{{ route('dashboard.countries.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.create')</a>
+                                        <a href="{{ route('dashboard.categories.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.create')</a>
                                     </div>
                     
                                 </div>
@@ -43,7 +43,7 @@
                     
                         <div class="box-body">
                     
-                            @if ($countries->count() > 0)
+                            @if ($categories->count() > 0)
                     
                             <table class="table table-hover">
                     
@@ -56,13 +56,13 @@
                                 </thead>
                     
                                 <tbody>
-                                    @foreach ($countries as $index=>$country)
+                                    @foreach ($categories as $index=>$category)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $country->name }}</td>
+                                        <td>{{ $category->name }}</td>
                                         <td>
-                                            <a href="{{ route('dashboard.countries.edit', $country->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
-                                            <form action="{{ route('dashboard.countries.destroy', $country->id) }}" method="post" style="display: inline-block">
+                                            <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
+                                            <form action="{{ route('dashboard.categories.destroy', $category->id) }}" method="post" style="display: inline-block">
                                                 {{ csrf_field() }} {{ method_field('delete') }}
                                                 <button type="submit" class="btn btn-danger delete btn-sm"><i class="fa fa-trash"></i> @lang('site.delete')</button>
                                             </form>
