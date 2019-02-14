@@ -42,6 +42,8 @@ return [
     'city' => 'المدنية',
     'countries' => 'البلاد',
     'cities' => 'المدن',
+    'categories' => 'الاقسام',
+    'category' => 'قسم',
 
     'permissions' => 'الصلاحيات',
 
