@@ -3,13 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
-class Admin extends Model
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class Admin extends Authenticatable
 {
-   protected $fillable = [
+    use Notifiable;
+    
+    protected $fillable = [
         'name',
         'email',
         'password',
         'profile_image',
+    ];
+
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 }

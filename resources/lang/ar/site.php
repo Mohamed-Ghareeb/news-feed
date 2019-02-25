@@ -43,7 +43,19 @@ return [
     'countries' => 'البلاد',
     'cities' => 'المدن',
     'categories' => 'الاقسام',
-    'category' => 'قسم',
+    'category' => 'القسم',
+    'posts' => 'المنشورات',
+    'post' => 'المنشور',
+    'title' => 'العنوان',
+    'body' => 'الوصف / المحتوي',
+    'post_details' => 'تفاصيل المنشور',
+    'title_of_post' => 'عنوان المنشور',
+    'follow_for' => 'تابع لقسم',
+    'posted_by' => 'منشور بواسطة',
+    'show_more' =>  'اقرأ المزيد',
+
+
+    
 
     'permissions' => 'الصلاحيات',
 

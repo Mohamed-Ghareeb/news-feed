@@ -11,4 +11,9 @@ class Category extends Model
     protected $table = 'categories';
     protected $guarded = ['id'];
     public $translatedAttributes = ['name'];
+
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
 }
