@@ -25,6 +25,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => ['loc
                 // Posts Routes    
                 Route::resource('posts', 'PostsController')->except(['show']);
                 Route::get('/posts/single-post/{id}', 'PostsController@single')->name('posts.single');
+                // Plans Routes    
+                Route::resource('plans', 'PlansController')->except(['show']);
             });
             
         });

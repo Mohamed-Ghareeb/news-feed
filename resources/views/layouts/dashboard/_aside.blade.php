@@ -19,6 +19,7 @@
             <li><a href="{{ route('dashboard.cities.index') }}"><i class="fa fa-flag-checkered"></i><span>@lang('site.cities')</span></a></li>
             <li><a href="{{ route('dashboard.categories.index') }}"><i class="fa fa-flag-checkered"></i><span>@lang('site.categories')</span></a></li>
             <li><a href="{{ route('dashboard.posts.index') }}"><i class="fa fa-flag-checkered"></i><span>@lang('site.posts')</span></a></li>
+            <li><a href="{{ route('dashboard.plans.index') }}"><i class="fa fa-flag-checkered"></i><span>@lang('site.plans')</span></a></li>
 
             {{--<li><a href="{{ route('dashboard.categories.index') }}"><i class="fa fa-book"></i><span>@lang('site.categories')</span></a></li>--}}
             {{----}}

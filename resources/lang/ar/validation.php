@@ -42,7 +42,7 @@ return [
     'file' => 'الـ :attribute يجب أن يكون ملفا.',
     'filled' => ':attribute إجباري',
     'image' => 'يجب أن يكون :attribute صورةً',
-    'in' => ':attribute لاغٍ',
+    'in' => ':attribute غير متوافق مع الموجود',
     'in_array' => ':attribute غير موجود في :other.',
     'integer' => 'يجب أن يكون :attribute عددًا صحيحًا',
     'ip' => 'يجب أن يكون :attribute عنوان IP صحيحًا',
@@ -147,6 +147,9 @@ return [
         'size' => 'الحجم',
         'image' => 'صوره',
         'permissions' => 'الصلاحيات',
+        'price' => 'السعر',
+        'features' => 'مميزات العضوية',
+        'notification_type' => 'نوع بريد الوارد',
         'ar' => [
             'name' => 'الاسم باللغة العربية'
         ],
