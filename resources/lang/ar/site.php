@@ -60,6 +60,7 @@ return [
     'notification_type' =>  'نوع بريد الوارد',
     'price' =>  'السعر',
     'icon' =>  'الشعار',
+    'profile_image' =>  'الصورة',
     
 
     

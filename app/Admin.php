@@ -17,6 +17,13 @@ class Admin extends Authenticatable
         'profile_image',
     ];
 
+    protected $appends = ['image_path'];
+
+    public function getImagePathAttribute()
+    {
+        return asset($this->profile_image);
+    }
+
     protected $hidden = [
         'password', 'remember_token',
     ];

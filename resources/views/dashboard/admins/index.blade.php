@@ -52,6 +52,7 @@
                                         <th>#</th>
                                         <th>@lang('site.name')</th>
                                         <th>@lang('site.email')</th>
+                                        <th>@lang('site.image')</th>
                                         <th>@lang('site.action')</th>
                                     </tr>
                                 </thead>
@@ -62,6 +63,7 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $admin->name }}</td>
                                         <td>{{ $admin->email }}</td>
+                                        <td><img src="{{ $admin->image_path }}" alt="" width="100" height="100" class="img-thumbnail"></td>
                                         <td>
                                             <a href="{{ route('dashboard.admins.edit', $admin->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
                                             <form action="{{ route('dashboard.admins.destroy', $admin->id) }}" method="post" style="display: inline-block">

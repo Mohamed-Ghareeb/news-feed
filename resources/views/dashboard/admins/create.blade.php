@@ -17,26 +17,33 @@
 
      @include('partials._errors')   
 
-    <form action="{{ route('dashboard.admins.store') }}" method="post">
+    <form action="{{ route('dashboard.admins.store') }}" method="post" enctype="multipart/form-data">
     
         @csrf
         @method('post') 
         
         <div class="form-group">
             <label>@lang('site.name')</label>
-            <input class="form-control" type="text" name="name" value="{{ old('name') }}">
+            <input class="form-control" type="text" name="name" value="{{ old('name') }}" required>
         </div>
         <div class="form-group">
             <label>@lang('site.email')</label>
-            <input class="form-control" type="email" name="email" value="{{ old('email') }}">
+            <input class="form-control" type="email" name="email" value="{{ old('email') }}" required>
         </div>
         <div class="form-group">
             <label>@lang('site.password')</label>
-            <input class="form-control" type="password" name="password">
+            <input class="form-control" type="password" name="password" required>
         </div>
         <div class="form-group">
             <label>@lang('site.password_confirmation')</label>
-            <input class="form-control" type="password" name="password_confirmation">
+            <input class="form-control" type="password" name="password_confirmation" required>
+        </div>
+        <div class="form-group">
+            <label>@lang('site.profile_image')</label>
+            <input class="form-control image" type="file" name="profile_image">
+        </div>
+        <div class="form-group">
+            <img src="{{ asset('uploads/admins_images/default.png') }}" class="img-thumbnail image-preview" width="150" height="150">
         </div>
         <div class="form-group">
             <button class="btn btn-primary" type="submit">@lang('site.add')</button>
