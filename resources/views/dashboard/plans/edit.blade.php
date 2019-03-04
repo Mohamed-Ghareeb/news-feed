@@ -9,6 +9,7 @@
 
         <ol class="breadcrumb">
             <li><a href="{{ route('dashboard.index') }}"> @lang('site.dashboard')</a></li>
+            <li><a href="{{ route('dashboard.plans.index') }}"> @lang('site.plans')</a></li>
             <li class="active"> @lang('site.update')</li>
         </ol>
     </section>

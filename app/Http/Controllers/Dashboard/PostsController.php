@@ -26,19 +26,15 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
-
-
         $request->validate([
             'title'        => 'required',
             'body'         => 'required',
             'category_id'  => ['required', Rule::exists('categories', 'id')],
-            'user_id'      => User::id(),
         ]);
-
 
         $data = $request->except('summary', 'user_id');
         $data['summary'] = substr($request->body, 0, 20);
-        // $data['user_id'] = Auth::id();
+        $data['user_id'] = auth()->id();
 
         Post::create($data);
         session()->flash('success', __('site.added_successfully'));

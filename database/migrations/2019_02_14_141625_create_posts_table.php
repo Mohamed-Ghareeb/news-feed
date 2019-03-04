@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('summary');
             $table->string('main_image')->nullable();
             $table->string('images')->nullable();
-            $table->string('approved');
+            $table->string('approved')->default(0);
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->unsignedInteger('user_id')->nullable();

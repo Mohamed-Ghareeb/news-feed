@@ -48,6 +48,7 @@ return [
     'post' => 'المنشور',
     'title' => 'العنوان',
     'body' => 'الوصف / المحتوي',
+    'description' => 'الوصف',
     'post_details' => 'تفاصيل المنشور',
     'title_of_post' => 'عنوان المنشور',
     'follow_for' => 'تابع لقسم',

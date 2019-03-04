@@ -8,7 +8,7 @@
         <h1>@lang('site.dashboard')</h1>
 
         <ol class="breadcrumb">
-            <li><a href="{{ route('dashboard.index') }}"></a> @lang('site.dashboard')</li>
+            <li><a href="{{ route('dashboard.index') }}"> @lang('site.dashboard')</a></li>
             <li class="active"> @lang('site.posts')</li>
         </ol>
     </section>

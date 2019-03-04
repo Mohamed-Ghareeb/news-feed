@@ -28,14 +28,16 @@
             </div>
             <div class="box-footer" style="background:#ccc;">
                 <div class="row">
-                    <div class="col-md-3">
-                        <p class="text-center">@lang('site.follow_for') : &nLeftarrow; <strong>{{ $post->category->name }}</strong></p>
-                    </div>
-                    {{-- @dd($post->user) --}}
-                    
+                    @if ($post->category)
+                        <div class="col-md-3">
+                            <p class="text-center">@lang('site.follow_for') : &nLeftarrow; <strong>{{ $post->category->name }}</strong></p>
+                        </div>
+                    @endif
+                    @if ($post->user)
                     <div class="col-md-3">
                         <p class="text-center">@lang('site.posted_by') : &nLeftarrow; <strong>{{ $post->user->name }}</strong></p>
-                    </div>
+                    </div>                        
+                    @endif
                     
                     <div class="col-md-3" >
                         Tags
