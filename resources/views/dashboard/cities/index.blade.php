@@ -32,6 +32,9 @@
                                     <div class="col-md-4">
                                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> @lang('site.search')</button>
                                         <a href="{{ route('dashboard.cities.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.create')</a>
+                                        @if (count($all_trashed) > 0)
+                                            <a href="{{ route('dashboard.cities.all_trashed') }}" class="btn btn-danger"><i class="fa fa-trash"></i> @lang('site.all_trashed')</a>
+                                        @endif
                                     </div>
                     
                                 </div>
@@ -51,7 +54,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>@lang('site.name')</th>
-                                        <th>@lang('site.country')</th>
+                                        {{-- <th>@lang('site.country')</th> --}}
                                         <th>@lang('site.action')</th>
                                     </tr>
                                 </thead>
@@ -61,7 +64,8 @@
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $city->name }}</td>
-                                        <td>{{ $city->country->name }}</td>
+                                        {{-- @dd($city->country->name) --}}
+                                        {{-- <td>{{ $city->country->name }}</td> --}}
                                         <td>
                                             <a href="{{ route('dashboard.cities.edit', $city->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
                                             <form action="{{ route('dashboard.cities.destroy', $city->id) }}" method="post" style="display: inline-block">

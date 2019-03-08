@@ -21,6 +21,7 @@ class CreatePlansTable extends Migration
             $table->string('image')->default('default.jpg');
             $table->enum('notification_type', ['in-site', 'in-site & e-mail', 'no notification']);  // enum 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

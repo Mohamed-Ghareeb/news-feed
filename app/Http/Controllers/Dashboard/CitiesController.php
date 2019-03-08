@@ -14,8 +14,8 @@ class CitiesController extends Controller
     public function index()
     {
         $cities = City::with('country')->get();
-        
-        return view('dashboard.cities.index', compact('cities'));
+        $all_trashed = City::onlyTrashed()->get();
+        return view('dashboard.cities.index', compact('cities', 'all_trashed'));
     }
 
     public function create()
@@ -58,6 +58,28 @@ class CitiesController extends Controller
     public function destroy(City $city)
     {
         $city->delete();
+        session()->flash('success', __('site.deleted_successfully'));
+        return redirect()->route('dashboard.cities.index');
+    }
+    
+    public function all_trashed() // Soft Delete [ all_trashed ] => Mean Showing All Records trashed
+    {
+        $all_trashed = City::onlyTrashed()->get();
+        return view('dashboard.cities.trashed', compact('all_trashed'));
+    }
+
+    public function restore($id) // Soft Delete [ restore ] => Mean restoring The Trashed Cities
+    {
+        // dd($id, City::onlyTrashed()->where('id', $id)->get());
+        City::onlyTrashed()->where('id', $id)->restore();
+        session()->flash('success', __('site.restored_successfully'));
+        return redirect()->route('dashboard.cities.all_trashed');
+    }
+
+    public function delete($id) // Soft Delete [ delete ] => Mean Delete form Database And The Application
+    {
+        $city = City::onlyTrashed()->where('id', $id)->first();
+        $city->forceDelete();
         session()->flash('success', __('site.deleted_successfully'));
         return redirect()->route('dashboard.cities.index');
     }

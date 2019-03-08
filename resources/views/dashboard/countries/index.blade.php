@@ -32,6 +32,9 @@
                                     <div class="col-md-4">
                                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> @lang('site.search')</button>
                                         <a href="{{ route('dashboard.countries.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.create')</a>
+                                        @if (count($all_trashed) > 0)
+                                            <a href="{{ route('dashboard.countries.all_trashed') }}" class="btn btn-danger"><i class="fa fa-trash"></i> @lang('site.all_trashed')</a>
+                                        @endif
                                     </div>
                     
                                 </div>

@@ -20,6 +20,7 @@ class CreateAdminsTable extends Migration
             $table->string('password');
             $table->string('profile_image')->default('default.png');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -15,7 +15,8 @@ class AdminController extends Controller
     public function index()
     {
         $admins = Admin::all();
-        return view('dashboard.admins.index', compact('admins'));
+        $all_trashed = Admin::onlyTrashed()->get();
+        return view('dashboard.admins.index', compact('admins','all_trashed'));
     }
     
     public function create()
@@ -33,15 +34,17 @@ class AdminController extends Controller
             'password'       => 'required|confirmed',
         ]);
     
-        $data = $request->except(['password', 'password_confirm', 'profile_image']);
+        $data = $request->except(['password', 'password_confirmation', 'profile_image']);
         $data['password'] = bcrypt($request->password);
         if ($request->hasFile('profile_image')) {
             Image::make($request->profile_image)->resize(300, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/admins_images/' . $request->profile_image->hashName()));
+            $data['profile_image'] = 'uploads/admins_images/' . $request->profile_image->hashName();
+        } else {
+            $data['profile_image'] = 'uploads/admins_images/default.png';
         } // end of if
 
-        $data['profile_image'] = 'uploads/admins_images/' . $request->profile_image->hashName();
 
 
         Admin::create($data);
@@ -83,13 +86,37 @@ class AdminController extends Controller
         return redirect()->route('dashboard.admins.index');  
     }
 
-    public function destroy(Admin $admin)
+    public function destroy(Admin $admin) // Soft Delete [ destroy ] => Mean Trash
     {
+        $admin->delete();
+        session()->flash('success', __('site.deleted_successfully'));
+        return redirect()->route('dashboard.admins.index');
+    }
+
+    public function all_trashed() // Soft Delete [ all_trashed ] => Mean Showing All Records trashed
+    {
+        $all_trashed = Admin::onlyTrashed()->get();
+        return view('dashboard.admins.trashed', compact('all_trashed'));
+    }
+
+    public function restore($id) // Soft Delete [ restore ] => Mean restoring The Trashed Admins
+    {
+        // dd($id, Admin::onlyTrashed()->where('id', $id)->get());
+        Admin::onlyTrashed()->where('id', $id)->restore();
+        session()->flash('success', __('site.restored_successfully'));
+        return redirect()->route('dashboard.admins.all_trashed');
+    }
+
+    public function delete($id) // Soft Delete [ delete ] => Mean Delete form Database And The Application
+    {
+        $admin = Admin::onlyTrashed()->where('id', $id)->first();
+        // $admin->onlyTrashed()->where('id', $id)
+        // dd($admin);
         if ($admin->profile_image) {
             Storage::disk('public_uploads')->delete($admin->profile_image);
         }
-        $admin->delete();
+        $admin->forceDelete();
         session()->flash('success', __('site.deleted_successfully'));
-        return redirect()->route('dashboard.admins.index');  
+        return redirect()->route('dashboard.admins.index');
     }
 }

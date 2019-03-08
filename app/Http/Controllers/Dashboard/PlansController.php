@@ -14,7 +14,8 @@ class PlansController extends Controller
     public function index()
     {
         $plans = Plan::all();
-        return view('dashboard.plans.index', compact('plans'));
+        $all_trashed = Plan::onlyTrashed()->get();
+        return view('dashboard.plans.index', compact('plans', 'all_trashed'));
     }
     
     public function create()
@@ -88,19 +89,40 @@ class PlansController extends Controller
         
         session()->flash('success', __('site.added_successfully'));
         
-        return redirect()->route('dashboard.plans.index');
-        
+        return redirect()->route('dashboard.plans.index');   
     }
 
     public function destroy(Plan $plan)
     {
 
         // dd($plan->image);
+
+
+        $plan->delete();
+        session()->flash('success', __('site.deleted_successfully'));
+        return redirect()->route('dashboard.plans.index');
+    }
+        public function all_trashed() // Soft Delete [ all_trashed ] => Mean Showing All Records trashed
+    {
+        $all_trashed = Plan::onlyTrashed()->get();
+        return view('dashboard.plans.trashed', compact('all_trashed'));
+    }
+
+    public function restore($id) // Soft Delete [ restore ] => Mean restoring The Trashed Plans
+    {
+        // dd($id, Plan::onlyTrashed()->where('id', $id)->get());
+        Plan::onlyTrashed()->where('id', $id)->restore();
+        session()->flash('success', __('site.restored_successfully'));
+        return redirect()->route('dashboard.plans.all_trashed');
+    }
+
+    public function delete($id) // Soft Delete [ delete ] => Mean Delete form Database And The Application
+    {
+        $plan = Plan::onlyTrashed()->where('id', $id)->first();
         if ($plan->image) {
             Storage::disk('public_uploads')->delete($plan->image);
         }
-
-        $plan->delete();
+        $plan->forceDelete();
         session()->flash('success', __('site.deleted_successfully'));
         return redirect()->route('dashboard.plans.index');
     }

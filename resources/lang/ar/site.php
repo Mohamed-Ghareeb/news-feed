@@ -27,6 +27,7 @@ return [
     'added_successfully' => 'تم اضافه البيانات بنجاح',
     'updated_successfully' => 'تم تعديل البيانات بنجاح',
     'deleted_successfully' => 'تم حذف البيانات بنجاح',
+    'restored_successfully' => 'تم استعادة البيانات بنجاح',
 
     'no_data_found' => 'للاسف لا يوجد اي سجلات',
 
@@ -61,7 +62,9 @@ return [
     'price' =>  'السعر',
     'icon' =>  'الشعار',
     'profile_image' =>  'الصورة',
-    
+    'restore' => 'استعادة',
+    'all_trashed' => 'السجلات المحذوفة',
+
 
     
 

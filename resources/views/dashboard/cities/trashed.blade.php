@@ -9,7 +9,8 @@
 
         <ol class="breadcrumb">
             <li><a href="{{ route('dashboard.index') }}"> @lang('site.dashboard')</a></li>
-            <li class="active"> @lang('site.plans')</li>
+            <li><a href="{{ route('dashboard.cities.index') }}"> @lang('site.cities')</a></li>
+            <li class="active"> @lang('site.all_trashed')</li>
         </ol>
     </section>
 
@@ -19,9 +20,9 @@
                     
                         <div class="box-header with-border">
                     
-                            <h3 class="box-title" style="margin-bottom: 15px">@lang('site.plans')</h3>
+                            <h3 class="box-title" style="margin-bottom: 15px">@lang('site.all_trashed')</h3>
                     
-                            <form action="{{ route('dashboard.plans.index') }}" method="get">
+                            <form action="{{ route('dashboard.cities.index') }}" method="get">
                     
                                 <div class="row">
                     
@@ -31,10 +32,7 @@
                     
                                     <div class="col-md-4">
                                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> @lang('site.search')</button>
-                                        <a href="{{ route('dashboard.plans.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.create')</a>
-                                        @if (count($all_trashed) > 0)
-                                            <a href="{{ route('dashboard.plans.all_trashed') }}" class="btn btn-danger"><i class="fa fa-trash"></i> @lang('site.all_trashed')</a>
-                                        @endif
+                                        <a href="{{ route('dashboard.cities.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.create')</a>
                                     </div>
                     
                                 </div>
@@ -43,10 +41,11 @@
                     
                         </div>
                         <!-- end of box header -->
-                    
+                                            
                         <div class="box-body">
                     
-                            @if ($plans->count() > 0)
+                            @if ($all_trashed->count() > 0)
+
                     
                             <table class="table table-hover">
                     
@@ -54,23 +53,20 @@
                                     <tr>
                                         <th>#</th>
                                         <th>@lang('site.name')</th>
-                                        <th style="width:700px">@lang('site.features')</th>
-                                        <th>@lang('site.icon')</th>
                                         <th>@lang('site.action')</th>
                                     </tr>
                                 </thead>
                     
                                 <tbody>
-                                    @foreach ($plans as $index=>$plan)
+                                    @foreach ($all_trashed as $index=>$city)
                                     <tr>
+
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $plan->name }}</td>
-                                        <td>{{ $plan->features }}</td>
-                                        {{-- @dd($plan->image ) --}}
-                                        <td><img src="{{ $plan->image_path }}" alt="" width="100" height="100" class="img-thumbnail"></td>
+                                        <td>{{ $city->name }}</td>
                                         <td>
-                                            <a href="{{ route('dashboard.plans.edit', $plan->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
-                                            <form action="{{ route('dashboard.plans.destroy', $plan->id) }}" method="post" style="display: inline-block">
+                                            <a href="{{ route('dashboard.cities.restore', $city->id) }}" class="btn btn-success btn-sm"><i class="fa fa-reply"></i> @lang('site.restore')</a>
+                                            {{-- <a href="{{ route('dashboard.cities.delete', $city->id) }}" class="btn btn-danger delete btn-sm"><i class="fa fa-reply"></i> @lang('site.delete')</a> --}}
+                                            <form action="{{ route('dashboard.cities.delete', $city->id) }}" method="post" style="display: inline-block">
                                                 {{ csrf_field() }} {{ method_field('delete') }}
                                                 <button type="submit" class="btn btn-danger delete btn-sm"><i class="fa fa-trash"></i> @lang('site.delete')</button>
                                             </form>
@@ -87,6 +83,8 @@
                             @else
                     
                             <h2>@lang('site.no_data_found')</h2>
+
+                            {{-- @return {{  redirect()->route('dashboard.cities.index') }} --}}
                     
                             @endif
                     
