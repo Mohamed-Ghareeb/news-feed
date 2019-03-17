@@ -25,10 +25,9 @@ class CitiesController extends Controller
     }
 
     public function store(Request $request)
-    {
-        // dd($request->all());
+    {       
         $request->validate([
-            'ar.name'    => 'required|unique:city_translations,name',
+            'name'  => ['required', Rule::unique('cities', 'name')],
             'country_id' => ['required', Rule::exists('countries', 'id')],
         ]);
 
@@ -46,8 +45,8 @@ class CitiesController extends Controller
     public function update(Request $request, City $city)
     {
         $request->validate([
-            'ar.name' => ['required', Rule::unique('city_translations', 'name')->ignore($city->id)],
-            'country_id' => ['required', Rule::exists('countries', 'id')],
+            'name'  => ['required', Rule::unique('cities', 'name')],
+            'country_id' => ['required', Rule::exists('countries', 'id')->ignore($city->id, 'id')],
         ]);
 
         $city->update($request->all());

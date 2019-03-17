@@ -7,14 +7,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class City extends Model
 {
-    use \Dimsav\Translatable\Translatable;
     use SoftDeletes;
     
     protected $table = 'cities';
-    protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
-    public $translatedAttributes = ['name'];
-    // protected $with = ['country'];
+    protected $fillable = ['name'];    // protected $with = ['country'];
 
 
     public function country()

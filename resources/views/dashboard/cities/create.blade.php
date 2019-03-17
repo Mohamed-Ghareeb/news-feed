@@ -24,14 +24,12 @@
 
         {{-- @dd(config('translatable.locales')) --}}
 
-        @foreach (config('translatable.locales') as $locale)
             
             <div class="form-group">
-                <label>@lang('site.' . $locale . '.name')</label>
-                <input class="form-control" type="text" name="{{ $locale }}[name]" value="{{ old($locale . '.name') }}">
+                <label>@lang('site.name')</label>
+                <input class="form-control" type="text" name="name" value="{{ old('name') }}">
             </div>
             
-            @endforeach
             <div class="form-group">
                 <label>@lang('site.country')</label>
                 

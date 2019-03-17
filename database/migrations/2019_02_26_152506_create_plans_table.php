@@ -15,7 +15,7 @@ class CreatePlansTable extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->double('price', 5, 2);
             $table->text('features');
             $table->string('image')->default('default.jpg');

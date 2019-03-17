@@ -13,13 +13,15 @@ class AdminsTableSeeder extends Seeder
     public function run()
     {
         Admin::create([
-            'name'          => 'Mohamed Ghareeb',
+            'first_name'    => 'Mohamed',
+            'last_name'     => 'Ghareeb',
             'email'         => 'm@ghareeb.com',
             'profile_image' => 'uploads/admins_images/default.png',
             'password'      => bcrypt('123123'),
         ]);
         Admin::create([
-            'name'          => 'Mohamed Alaa',
+            'first_name'    => 'Mohamed',
+            'last_name'     => 'Alaa',
             'email'         => 'm@alaa.com',
             'profile_image' => 'uploads/admins_images/alaa.jpg',
             'password'      => bcrypt('123123'),

@@ -23,8 +23,12 @@
         @method('post') 
         
         <div class="form-group">
-            <label>@lang('site.name')</label>
-            <input class="form-control" type="text" name="name" value="{{ old('name') }}" required>
+            <label>@lang('site.first_name')</label>
+            <input class="form-control" type="text" name="first_name" value="{{ old('first_name') }}" required>
+        </div>
+        <div class="form-group">
+            <label>@lang('site.last_name')</label>
+            <input class="form-control" type="text" name="last_name" value="{{ old('last_name') }}" required>
         </div>
         <div class="form-group">
             <label>@lang('site.email')</label>

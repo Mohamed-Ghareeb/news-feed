@@ -22,15 +22,10 @@
             @csrf
             @method('put') 
             
-            @foreach (config('translatable.locales') as $locale)
-
             <div class="form-group">
-                <label>@lang('site.' . $locale . '.name')</label>
-                <input class="form-control" type="text" name="{{ $locale }}[name]" value="{{ $city->translate($locale)->name }}"> <!-- $country . $locale . '.name' -->
+                <label>@lang('site.name')</label>
+                <input class="form-control" type="text" name="name" value="{{ $city->name }}">
             </div>
-
-            @endforeach
-            
             <div class="form-group">
                 <label>@lang('site.country')</label>
                 <select class="form-control" name="country_id">

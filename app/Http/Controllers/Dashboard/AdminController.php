@@ -28,7 +28,8 @@ class AdminController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'name'           => 'required',
+            'first_name'     => 'required',
+            'last_name'      => 'required',
             'email'          => 'required|email|unique:admins,email',
             'profile_image'  => 'sometimes|nullable|image',
             'password'       => 'required|confirmed',
@@ -45,8 +46,6 @@ class AdminController extends Controller
             $data['profile_image'] = 'uploads/admins_images/default.png';
         } // end of if
 
-
-
         Admin::create($data);
         session()->flash('success', __('site.added_successfully'));    
         return redirect()->route('dashboard.admins.index');            
@@ -60,7 +59,8 @@ class AdminController extends Controller
     public function update(Request $request, Admin $admin)
     {
         $request->validate([
-            'name'           => 'required',
+            'first_name'     => 'required',
+            'last_name'      => 'required',
             'profile_image'  => 'sometimes|nullable|image',
             'email'          => ['required',  Rule::unique('admins', 'email')->ignore($admin->id)],
         ]);

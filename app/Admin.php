@@ -13,7 +13,8 @@ class Admin extends Authenticatable
     use SoftDeletes;
     
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
         'profile_image',
@@ -30,4 +31,14 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getFirstNameAttribute($value)
+    {
+        return ucwords($value);
+    }
+
+    public function getLastNameAttribute($value)
+    {
+        return ucwords($value);
+    }
 }

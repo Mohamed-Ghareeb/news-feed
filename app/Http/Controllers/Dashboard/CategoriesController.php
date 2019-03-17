@@ -24,11 +24,9 @@ class CategoriesController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
-            'ar.name' => 'required|unique:category_translations,name',
+            'name'  => ['required', Rule::unique('categories', 'name')]
         ]);
-
         Category::create($request->all());
         session()->flash('success', __('site.added_successfully'));
         return redirect()->route('dashboard.categories.index');
@@ -42,9 +40,8 @@ class CategoriesController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'ar.name' => ['required', Rule::unique('category_translations', 'name')->ignore($category->id)]
+            'name'  => ['required', Rule::unique('categories', 'name')->ignore($category->id, 'id')]
         ]);
-
         $category->update($request->all());
         session()->flash('success', __('site.updated_successfully'));
         return redirect()->route('dashboard.categories.index');

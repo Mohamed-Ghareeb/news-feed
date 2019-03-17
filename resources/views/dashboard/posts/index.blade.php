@@ -52,6 +52,7 @@
                                         <th>#</th>
                                         <th>@lang('site.name')</th>
                                         <th>@lang('site.description')</th>
+                                        <th>@lang('site.image')</th>
                                         <th>@lang('site.action')</th>
                                     </tr>
                                 </thead>
@@ -62,9 +63,10 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $post->title }}</td>
                                         <td>
-                                            .....{{ $post->summary }} <br>
+                                            {{ $post->summary }} <br>
                                             <a href="{{ route('dashboard.posts.single', $post->id) }}" class="btn btn-info btn-xs align-center">@lang('site.show_more')</a>
                                         </td>
+                                        <td><img src="{{ $post->image_path }}" alt="" width="100" height="100"></td>
                                         <td>
                                             <a href="{{ route('dashboard.posts.edit', $post->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
                                             <form action="{{ route('dashboard.posts.destroy', $post->id) }}" method="post" style="display: inline-block">

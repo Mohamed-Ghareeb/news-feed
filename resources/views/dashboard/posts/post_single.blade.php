@@ -19,31 +19,45 @@
         <div class="box box-primary">
                     
             <div class="box-header with-border">
-                <h3 class="box-title" style="margin-bottom: 15px">@lang('site.title_of_post') : <strong>{{ $post->title }}</strong></h3>
+                <h3 class="box-title" style="margin-bottom: 15px">@lang('site.show') : <strong>{{ $post->title }}</strong></h3>
             </div>
             <!-- end of box header -->
         
             <div class="box-body">
                 <p>{{ $post->body }}</p>
-            </div>
-            <div class="box-footer" style="background:#ccc;">
+            
+                <br>
+                <hr>
+
                 <div class="row">
                     @if ($post->category)
-                        <div class="col-md-3">
-                            <p class="text-center">@lang('site.follow_for') : &nLeftarrow; <strong>{{ $post->category->name }}</strong></p>
-                        </div>
-                    @endif
-                    @if ($post->user)
+                    <div class="col-md-3">
+                        <p class="text-center">@lang('site.follow_for') : &nLeftarrow; <strong>{{ $post->category->name }}</strong></p>
+                    </div>
+                    @endif @if ($post->user)
                     <div class="col-md-3">
                         <p class="text-center">@lang('site.posted_by') : &nLeftarrow; <strong>{{ $post->user->name }}</strong></p>
-                    </div>                        
-                    @endif
-                    
-                    <div class="col-md-3" >
-                        Tags
                     </div>
+                    @endif {{-- @dd($post->tags) --}} @if ($post->tags()->exists())
+                    <div class="col-md-3">
+                
+                        <ul class="list-group">
+                            <li class="list-group-item active">@lang('site.tags')</li>
+                            @foreach ($post->tags as $tag)
+                
+                            <li class="list-group-item">
+                                <a href="{{ route('dashboard.tags.index') }}s">{{ $tag->name }}</a>
+                            </li>
+                
+                            @endforeach
+                        </ul>
+                    </div>
+                
+                
+                    @endif
                 </div>
             </div>
+            
             <!-- end of box body -->
         
         

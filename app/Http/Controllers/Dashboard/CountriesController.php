@@ -24,9 +24,8 @@ class CountriesController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
-            'ar.name' => 'required|unique:country_translations,name',
+            'name' => ['required', Rule::unique('countries', 'name')]
         ]);
 
         Country::create($request->all());
@@ -42,7 +41,7 @@ class CountriesController extends Controller
     public function update(Request $request, Country $country)
     {
         $request->validate([
-            'ar.name' => ['required', Rule::unique('country_translations', 'name')->ignore($country->id)]
+            'name' => ['required', Rule::unique('countries', 'name')->ignore($country->id)]
         ]);
 
         $country->update($request->all());

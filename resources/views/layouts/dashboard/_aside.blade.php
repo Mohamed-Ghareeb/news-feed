@@ -7,7 +7,7 @@
                 <img src="{{ asset('dashboard/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Mohamed Ghareeb</p>
+                <p>{{ auth()->guard('admin')->user()->first_name }} {{ auth()->guard('admin')->user()->last_name }}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -20,6 +20,7 @@
             <li><a href="{{ route('dashboard.categories.index') }}"><i class="fa fa-flag-checkered"></i><span>@lang('site.categories')</span></a></li>
             <li><a href="{{ route('dashboard.posts.index') }}"><i class="fa fa-flag-checkered"></i><span>@lang('site.posts')</span></a></li>
             <li><a href="{{ route('dashboard.plans.index') }}"><i class="fa fa-flag-checkered"></i><span>@lang('site.plans')</span></a></li>
+            <li><a href="{{ route('dashboard.tags.index') }}"><i class="fa fa-tag"></i><span>@lang('site.tags')</span></a></li>
 
             {{--<li><a href="{{ route('dashboard.categories.index') }}"><i class="fa fa-book"></i><span>@lang('site.categories')</span></a></li>--}}
             {{----}}

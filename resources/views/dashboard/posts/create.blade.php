@@ -18,7 +18,7 @@
 
      @include('partials._errors')
 
-    <form action="{{ route('dashboard.posts.store') }}" method="post">
+    <form action="{{ route('dashboard.posts.store') }}" method="post" enctype="multipart/form-data">
     
         @csrf
             
@@ -32,13 +32,30 @@
                 <textarea class="form-control" name="body" cols="20" rows="10">{{ old('body') }}</textarea>
             </div>
             <div class="form-group">
+                <label>@lang('site.main_image')</label>
+                <input class="form-control" type="file" name="main_image">
+            </div>
+            <div class="form-group">
+                <label>@lang('site.images')</label>
+                <input class="form-control" type="file" name="images[]" multiple>
+            </div>
+            <div class="form-group">
                 <label>@lang('site.category')</label>
                 <select class="form-control" name="category_id">
-                            <option>.....</option>
-                            @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
+                    <option>.....</option>
+                    @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label>@lang('site.tags')</label>
+                <select class="form-control select2 " name="tags_ids[]" multiple>
+                    <option>.....</option>
+                    @foreach ($tags as $tag)
+                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary" type="submit">@lang('site.create')</button>

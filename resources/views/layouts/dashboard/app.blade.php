@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Blank Page</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
+    
     {{--<!-- Bootstrap 3.3.7 -->--}}
     <link rel="stylesheet" href="{{ asset('dashboard/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/css/ionicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/css/skin-blue.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashboard/bower_components/select2/dist/css/select2.min.css') }}">
 
     @if (app()->getLocale() == 'ar')
         <link rel="stylesheet" href="{{ asset('dashboard/css/font-awesome-rtl.min.css') }}">
@@ -133,39 +134,28 @@
                     </li>
 
                     {{--<!-- Tasks: style can be found in dropdown.less -->--}}
-                    <li class="dropdown tasks-menu">
+                    {{-- <li class="dropdown tasks-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag-o"></i></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                {{--<!-- inner menu: contains the actual data -->--}}
-                                <ul class="menu">
-                                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                        <li>
-                                            <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                                {{ $properties['native'] }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+
+                    </li> --}}
 
                     {{--<!-- User Account: style can be found in dropdown.less -->--}}
                     <li class="dropdown user user-menu">
 
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{{ asset('dashboard/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Mohamed Ghareeb</span>
+                            <span class="hidden-xs">{{ auth()->guard('admin')->user()->first_name }} {{ auth()->guard('admin')->user()->last_name }}</span>
                         </a>
+
+                        {{-- @dd(auth()->guard('admin')->user()->first_name) --}}
                         <ul class="dropdown-menu">
 
                             {{--<!-- User image -->--}}
                             <li class="user-header">
                                 <img src="{{ asset('dashboard/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
-
+                                {{-- @dd(auth()->guard('users')->user()->first_name) --}}
                                 <p>
-                                    Mohamed Ghareeb
+                                    {{ auth()->guard('admin')->user()->first_name }} {{ auth()->guard('admin')->user()->last_name }}
                                     <small>Member since 2 days</small>
                                 </p>
                             </li>
@@ -212,6 +202,7 @@
 
 {{--icheck--}}
 <script src="{{ asset('dashboard/plugins/icheck/icheck.min.js') }}"></script>
+<script src="{{ asset('dashboard/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 
 {{--<!-- FastClick -->--}}
 <script src="{{ asset('dashboard/js/fastclick.js') }}"></script>
@@ -228,6 +219,12 @@
         $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
             checkboxClass: 'icheckbox_minimal-blue',
             radioClass: 'iradio_minimal-blue'
+        });
+
+        //Initialize Select2 Elements 
+        
+        $('.select2').select2({
+            color: '#f00'
         });
 
         //delete
